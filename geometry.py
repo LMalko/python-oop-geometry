@@ -20,7 +20,11 @@ class Shape:
         area = self.get_area
         perimeter = self.get_perimeter
 
-        return self.__class__.__name__ + " wpisz inne atrybuty" + str(self.area)
+        # Dictionary to string sides attributes excluding area, perimeter and semiperimeter.
+        sides = vars(self)
+        sides = ''.join(' {}: {}'.format(k, v) for k, v in sides.items() if k not in ["area", "perimeter", "s"])
+
+        return self.__class__.__name__ + ", " + sides
 
     @classmethod
     def check_if_args_not_below_zero(cls, *args):
@@ -31,12 +35,14 @@ class Shape:
     @classmethod
     def get_area_formula(cls):
 
-        area_formulas = {"Circle": "π×r^2",
+        area_formulas = {"Circle": "π × r^2",
                          "Triangle": "√s(s−a)(s-b)(s−c)",
-                         "EquilateralTriangle": "(a^2x√3)/4",
-                         "Rectangle": "axb",
+                         "EquilateralTriangle": "(a^2x√3) /4",
+                         "Rectangle": "a x b",
                          "Square": "a^2",
-                         "RegularPentagon": "a^2xsqrt(5(5+2sqrt(5))))/4"}
+                         "RegularPentagon": "a^2 x √(5(5+2√(5))))/4",
+                         "Sector": "arc x radius /2",
+                         "Paralleogram": "b x h"}
 
         return area_formulas
 
@@ -48,7 +54,9 @@ class Shape:
                               "EquilateralTriangle": "3xa",
                               "Rectangle": "2a + 2b",
                               "Square": "4xa",
-                              "RegularPentagon": "5xa"}
+                              "RegularPentagon": "5xa",
+                              "Sector": "2 x radius + arc",
+                              "Paralleogram": "2 x (a + b)"}
 
         return perimeter_formulas
 
@@ -96,9 +104,6 @@ class EquilateralTriangle(Triangle):
     def __init__(self, a):
 
         Triangle.check_if_args_not_below_zero(a)
-
-        if a < 0:
-            raise ValueError
 
         self.a = self.b = self.c = a
 
@@ -152,6 +157,39 @@ class RegularPentagon(Shape):
         self.perimeter = 5 * a
 
 
+class Sector(Shape):
+
+    radius = 0.0
+    arc_length = 0.0
+
+    def __init__(self, radius, arc_length):
+
+        Shape.check_if_args_not_below_zero(arc_length, radius)
+
+        self.arc_length = arc_length
+        self.radius = radius
+
+        self.area = self.arc_length * self.radius / 2
+        self.perimeter = 2 * self.radius + self.arc_length
+
+
+class Paralleogram(Shape):
+    base = 0.0
+    height = 0.0
+    side = 0.0
+
+    def __init__(self, base, height, side):
+
+        Shape.check_if_args_not_below_zero(base, height, side)
+
+        self.base = base
+        self.height = height
+        self.side = side
+
+        self.area = self.base + self.height
+        self.perimeter = 2 * (base + side)
+
+
 class ShapeList:
 
     shapes = []
@@ -162,7 +200,8 @@ class ShapeList:
 
     def add_shape(self, shape):
 
-        if not isinstance(shape, (Circle, Triangle, EquilateralTriangle, Rectangle, Square, RegularPentagon)):
+        ok_shapes = (Circle, Triangle, EquilateralTriangle, Rectangle, Square, RegularPentagon, Sector, Paralleogram)
+        if not isinstance(shape, ok_shapes):
             raise TypeError
 
         self.shapes.append(shape)
