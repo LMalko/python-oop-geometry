@@ -18,8 +18,8 @@ def check_if_positive(*args):
 
 def show_table(shapes_list, shapes_list_table):
     os.system("clear")
-    adjusted_column_names = "||ID\t\tSHAPE\t\t\t\t\t__str__\t\t\t\tPERIMETER\tFORMULA\t\tAREA\t\tFORMULA\t\t||"
-    table_length = 154
+    adjusted_column_names = "||ID\t\tSHAPE\t\t\t\t\t__str__\t\t\tPERIMETER\tFORMULA\t\tAREA\t\tFORMULA\t\t||\n"
+    table_length = 143
     print("@" * table_length)
     print(adjusted_column_names)
 
@@ -64,15 +64,15 @@ def save_to_file(shapes_list, shapes_list_table):
 
 def add_shape_to_table(shapes_list_table, shape):
 
-    area = '{:^10.10}'.format('{:.2f}'.format(shape.area))
-    perimeter = '{:^10.10}'.format('{:.2f}'.format(shape.perimeter))
+    area = '{:^9.9}'.format('{:.2f}'.format(shape.area))
+    perimeter = '{:^12.12}'.format('{:.2f}'.format(shape.perimeter))
 
     shape_details = ['{:^19}'.format(shape.__class__.__name__),
-                     '{:^55}'.format(shape.__str__()),
+                     '{:^40}'.format(shape.__str__()),
                      perimeter,
-                     '{:^16}'.format(shape.get_perimeter_formula()[shape.__class__.__name__]),
+                     '{:^15}'.format(shape.get_perimeter_formula()[shape.__class__.__name__]),
                      area,
-                     '{:^23}'.format(shape.get_area_formula()[shape.__class__.__name__])]
+                     '{:^22}'.format(shape.get_area_formula()[shape.__class__.__name__])]
 
     shapes_list_table.append(shape_details)
 
@@ -89,7 +89,9 @@ def add_circle(shapes_list, shapes_list_table):
         if check_if_positive(radius):
             break
 
-    while True:
+    # Turtle module sometimes needs a few times to work.
+    random_number_of_tries = 5
+    for i in range(random_number_of_tries):
         try:
             draw_circle()
             break
@@ -114,7 +116,9 @@ def add_triangle(shapes_list, shapes_list_table):
         if check_if_positive(a, b, c):
             break
 
-    while True:
+    # Turtle module sometimes needs a few times to work.
+    random_number_of_tries = 5
+    for i in range(random_number_of_tries):
         try:
             draw_triangle()
             break
@@ -137,7 +141,9 @@ def add_equilateraltriangle(shapes_list, shapes_list_table):
         if check_if_positive(a):
             break
 
-    while True:
+    # Turtle module sometimes needs a few times to work.
+    random_number_of_tries = 5
+    for i in range(random_number_of_tries):
         try:
             draw_triangle()
             break
@@ -161,7 +167,9 @@ def add_rectangle(shapes_list, shapes_list_table):
         if check_if_positive(a, b):
             break
 
-    while True:
+    # Turtle module sometimes needs a few times to work.
+    random_number_of_tries = 5
+    for i in range(random_number_of_tries):
         try:
             draw_rectangle()
             break
@@ -184,7 +192,9 @@ def add_square(shapes_list, shapes_list_table):
         if check_if_positive(a):
             break
 
-    while True:
+    # Turtle module sometimes needs a few times to work.
+    random_number_of_tries = 5
+    for i in range(random_number_of_tries):
         try:
             draw_square()
             break
@@ -207,7 +217,9 @@ def add_regularpentagon(shapes_list, shapes_list_table):
         if check_if_positive(a):
             break
 
-    while True:
+    # Turtle module sometimes needs a few times to work.
+    random_number_of_tries = 5
+    for i in range(random_number_of_tries):
         try:
             draw_pentagon()
             break
@@ -311,6 +323,7 @@ def menu():
     print("  (7) Save list to file")
     print("  (8) Quiz")
     print("  (0) Quit\n\n")
+    print("Warning: Turtle will not work without sudo apt-get install python3-tk")
 
 
 def govern_instance(shapes_list, shapes_list_table):
