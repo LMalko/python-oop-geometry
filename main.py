@@ -1,9 +1,13 @@
 import sys
 import os
 import time
-from turtle_shapes import *
 from geometry import *
 from quiz import start
+
+try:
+    from turtle_shapes import *
+except:
+    pass
 
 
 def check_if_positive(*args):
