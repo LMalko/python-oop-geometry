@@ -22,7 +22,7 @@ def check_if_positive(*args):
 
 def show_table(shapes_list, shapes_list_table):
     os.system("clear")
-    adjusted_column_names = "||ID\t\tSHAPE\t\t\t\t__str__\t\t\tPERIMETER\tFORMULA\t\tAREA\t\tFORMULA\t\t||\n"
+    adjusted_column_names = "||ID\t\tSHAPE\t\t\t\t__str__\t\t\t\tPERIMETER\tFORMULA\t    AREA\tFORMULA\t\t ||\n"
     table_length = 143
     print("@" * table_length)
     print(adjusted_column_names)
@@ -68,13 +68,13 @@ def save_to_file(shapes_list, shapes_list_table):
 
 def add_shape_to_table(shapes_list_table, shape):
 
-    area = '{:^9.9}'.format('{:.2f}'.format(shape.area))
-    perimeter = '{:^12.12}'.format('{:.2f}'.format(shape.perimeter))
+    area = '{:^4.4}'.format('{:.2f}'.format(shape.area))
+    perimeter = '{:^4.4}'.format('{:.2f}'.format(shape.perimeter))
 
     shape_details = ['{:^19}'.format(shape.__class__.__name__),
-                     '{:^40}'.format(shape.__str__()),
+                     '{:^53}'.format(shape.__str__()),
                      perimeter,
-                     '{:^15}'.format(shape.get_perimeter_formula()[shape.__class__.__name__]),
+                     '{:^16}'.format(shape.get_perimeter_formula()[shape.__class__.__name__]),
                      area,
                      '{:^22}'.format(shape.get_area_formula()[shape.__class__.__name__])]
 
