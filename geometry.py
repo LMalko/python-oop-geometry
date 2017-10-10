@@ -86,7 +86,12 @@ class Triangle(Shape):
 
         self.s = (self.a + self.b + self.c) / 2
         self.perimeter = self.a + self.b + self.c
-        self.area = math.sqrt(self.s*(self.s-self.a)*(self.s-self.b)*(self.s-self.c))
+
+        # Heron's formula works only with proper triangles.
+        try:
+            self.area = math.sqrt(self.s*(self.s-self.a)*(self.s-self.b)*(self.s-self.c))
+        except ValueError:
+            self.area = 0.0
 
         if self.area == 0.0:
             print("Warning: impossible triangle")
