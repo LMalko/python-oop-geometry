@@ -19,11 +19,11 @@ def check_if_positive(*args):
 def show_table(shapes_list, shapes_list_table):
     os.system("cls")
     adjusted_column_names = "||ID\t\tSHAPE\t\t\t\t\t__str__\t\t\t\tPERIMETER\tFORMULA\t\tAREA\t\tFORMULA\t\t||"
+    table_length = 154
     print("@" * table_length)
     print(adjusted_column_names)
 
     line_number = 0
-    table_length = 154
     for i in shapes_list_table:
         print("||" + str('{:03d}'.format(line_number)) + ". " + "||" + "||".join(i) + "||")
         line_number += 1
