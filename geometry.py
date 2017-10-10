@@ -2,20 +2,15 @@ import math
 
 
 class Shape:
-    """
-    This is a abstract class representing geometrical shape.
-    """
+    '''This is a abstract class representing geometrical shape.'''
 
     def get_area(self):
-
         return self.area
 
     def get_perimeter(self):
-
         return self.perimeter
 
     def __str__(self):
-
         classname = self.__class__.__name__
         area = self.get_area
         perimeter = self.get_perimeter

@@ -3,17 +3,19 @@ import random
 
 
 def random_shape():
-    random_number1 = float(random.choice(range(500)))
-    random_number2 = float(random.choice(range(500)))
-    random_number3 = float(random.choice(range(500)))
+    reasonable_range = 500
+    random_number1 = float(random.choice(range(reasonable_range)))
+    random_number2 = float(random.choice(range(reasonable_range)))
+    random_number3 = float(random.choice(range(reasonable_range)))
 
     shape_object_choices = [Circle(random_number1),
-                            EquilateralTriangle(random_number1), Rectangle(random_number1, random_number2), 
-                            Square(random_number1), RegularPentagon(random_number1), 
-                            Sector(random_number1, random_number2), 
+                            EquilateralTriangle(random_number1),
+                            Rectangle(random_number1, random_number2),
+                            Square(random_number1),
+                            RegularPentagon(random_number1),
+                            Sector(random_number1, random_number2),
                             Paralleogram(random_number1, random_number2, random_number3)]
     return random.choice(shape_object_choices)
-
 
 
 def start():
@@ -29,7 +31,7 @@ def start():
     print(area)
     print(perimeter)
     finish = input("Press anything to continue")
-    
+
 
 if __name__ == "__main__":
     start()
