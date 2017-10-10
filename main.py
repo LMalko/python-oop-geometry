@@ -2,6 +2,7 @@ import sys
 import os
 import time
 from geometry import *
+from quiz import start
 
 
 def check_if_positive(*args):
@@ -51,7 +52,11 @@ def add_shape(shapes_list, shapes_list_table):
 
     if shape_choice == "1":
         while True:
-            radius = float(input("Radius: "))
+            try:
+                radius = float(input("Radius: "))
+            except ValueError:
+                print("Not a proper number.")
+                continue
             if check_if_positive(radius):
                 break
         new_CIRCLE = Circle(radius)
@@ -63,9 +68,13 @@ def add_shape(shapes_list, shapes_list_table):
 
     if shape_choice == "2":
         while True:
-            a = float(input("a: "))
-            b = float(input("b: "))
-            c = float(input("c: "))
+            try:
+                a = float(input("a: "))
+                b = float(input("b: "))
+                c = float(input("c: "))
+            except ValueError:
+                print("Not a proper number.")
+                continue
             if check_if_positive(a, b, c):
                 break
         new_TRIANGLE = Triangle(a, b, c)
@@ -77,7 +86,11 @@ def add_shape(shapes_list, shapes_list_table):
         
     if shape_choice == "3":
         while True:
-            a = float(input("a: "))
+            try:
+                a = float(input("a: "))
+            except ValueError:
+                print("Not a proper number.")
+                continue
             if check_if_positive(a):
                 break
         new_EQUILATERALTRIANGLE = EquilateralTriangle(a)
@@ -88,8 +101,12 @@ def add_shape(shapes_list, shapes_list_table):
         govern_instance(shapes_list, shapes_list_table)
     if shape_choice == "4":
         while True:
-            a = float(input("a: "))
-            b = float(input("b: "))
+            try:
+                a = float(input("a: "))
+                b = float(input("b: "))
+            except ValueError:
+                print("Not a proper number.")
+                continue
             if check_if_positive(a, b):
                 break
         new_RECTANGLE = Rectangle(a, b)
@@ -100,7 +117,11 @@ def add_shape(shapes_list, shapes_list_table):
         govern_instance(shapes_list, shapes_list_table)
     if shape_choice == "5":
         while True:
-            a = float(input("a: "))
+            try:
+                a = float(input("a: "))
+            except ValueError:
+                print("Not a proper number.")
+                continue
             if check_if_positive(a):
                 break
         new_SQUARE = Square(a)
@@ -111,7 +132,11 @@ def add_shape(shapes_list, shapes_list_table):
         govern_instance(shapes_list, shapes_list_table)
     if shape_choice == "6":
         while True:
-            a = float(input("a: "))
+            try:
+                a = float(input("a: "))
+            except ValueError:
+                print("Not a proper number.")
+                continue
             if check_if_positive(a):
                 break
         new_REGULARPENTAGON = RegularPentagon(a)
@@ -122,8 +147,12 @@ def add_shape(shapes_list, shapes_list_table):
         govern_instance(shapes_list, shapes_list_table)
     if shape_choice == "7":
         while True:
-            radius = float(input("Radius: "))
-            arc_length = float(input("Arc_length: "))
+            try:
+                radius = float(input("Radius: "))
+                arc_length = float(input("Arc_length: "))
+            except ValueError:
+                print("Not a proper number.")
+                continue
             if check_if_positive(radius, arc_length):
                 break
         new_SECTOR = Sector(radius, arc_length)
@@ -134,9 +163,13 @@ def add_shape(shapes_list, shapes_list_table):
         govern_instance(shapes_list, shapes_list_table)
     if shape_choice == "8":
         while True:
-            base = float(input("Base: "))
-            height = float(input("Height: "))
-            side = float(input("Side: "))
+            try:
+                base = float(input("Base: "))
+                height = float(input("Height: "))
+                side = float(input("Side: "))
+            except ValueError:
+                print("Not a proper number.")
+                continue
             if check_if_positive(base, height, side):
                 break
         new_PARALLEOGRAM = Paralleogram(base, height, side)
@@ -157,7 +190,8 @@ def menu():
     print("  (4) Show shape with the largest area")
     print("  (5) Show formulas")
     print("  (6) Clear list, start again.")
-    print("  (7) Save to file")##############
+    print("  (7) Save list to file")
+    print("  (8) Quiz")
     print("  (0) Quit\n\n")
 
 
@@ -169,7 +203,7 @@ def govern_instance(shapes_list, shapes_list_table):
         menu()
         option = input("Your choice is: ")
 
-        available_choices = ("1", "2", "3", "4", "5", "6", "7", "0")
+        available_choices = ("1", "2", "3", "4", "5", "6", "7", "8", "0")
         if option not in available_choices:
             os.system("cls")
             exit = input("\n\n\nNo such choice, try again.")
@@ -230,11 +264,22 @@ def govern_instance(shapes_list, shapes_list_table):
             main()
 
         if option == "7":
-            pass
+            with open("geoUML.txt", "w", encoding='utf-8') as myfile:
+                myfile.write("Shapes List: \n\n")
+                myfile.write(shapes_list.get_shapes_table())
+            os.system("cls")
+            print("List saved to file!")
+            time.sleep(2)
+            os.system("cls")
+
+        if option == "8":
+            os.system("cls")
+            start()  
+            os.system("cls")
 
         if option == "0":
             quit()
-        
+
 
 def main():
     os.system("cls")
@@ -243,6 +288,7 @@ def main():
     shapes_list_table = []
 
     govern_instance(shapes_list, shapes_list_table)
+
 
 
 if __name__ == "__main__":

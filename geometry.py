@@ -208,7 +208,7 @@ class ShapeList:
 
     def get_shapes_table(self):
 
-        return ",".join(str(i) for i in self.shapes)
+        return ",\n".join(str(i) for i in self.shapes)
 
     def get_largest_shape_by_perimeter(self):
 
