@@ -17,7 +17,7 @@ def check_if_positive(*args):
 
 
 def show_table(shapes_list, shapes_list_table):
-    os.system("cls")
+    os.system("clear")
     adjusted_column_names = "||ID\t\tSHAPE\t\t\t\t\t__str__\t\t\t\tPERIMETER\tFORMULA\t\tAREA\t\tFORMULA\t\t||"
     table_length = 154
     print("@" * table_length)
@@ -30,12 +30,12 @@ def show_table(shapes_list, shapes_list_table):
 
     print("@" * table_length)
     exit = input("\n\n\nPress anything to exit.")
-    os.system("cls")
+    os.system("clear")
     govern_instance(shapes_list, shapes_list_table)
 
 
 def show_formulas(shapes_list, shapes_list_table):
-        os.system("cls")
+        os.system("clear")
         areas = Shape.get_area_formula()
         perimeters = Shape.get_perimeter_formula()
 
@@ -48,7 +48,7 @@ def show_formulas(shapes_list, shapes_list_table):
             print(key, ": ", value)
 
         exit = input("\n\n\nPress anything to exit.")
-        os.system("cls")
+        os.system("clear")
         govern_instance(shapes_list, shapes_list_table)
 
 
@@ -56,10 +56,10 @@ def save_to_file(shapes_list, shapes_list_table):
     with open("geoUML.txt", "w", encoding='utf-8') as myfile:
         myfile.write("Shapes List: \n\n")
         myfile.write(shapes_list.get_shapes_table())
-    os.system("cls")
+    os.system("clear")
     print("List saved to file!")
     time.sleep(2)
-    os.system("cls")
+    os.system("clear")
 
 
 def add_shape_to_table(shapes_list_table, shape):
@@ -257,7 +257,7 @@ def add_paralleogram(shapes_list, shapes_list_table):
 
 def add_shape(shapes_list, shapes_list_table):
 
-    os.system("cls")
+    os.system("clear")
     shapes_supported = '''1. CIRCLE, 2. TRIANGLE, 3. EQUILATERALTRIANGLE, 4. RECTANGLE, 5. SQUARE,
                   6. REGULARPENTAGON, 7. SECTOR, 8. PARALLEOGRAM'''
     while True:
@@ -265,10 +265,10 @@ def add_shape(shapes_list, shapes_list_table):
         print("Shapes supported: " + shapes_supported)
         shape_choice = input("\n\nWhat's Your choice? ")
         if shape_choice not in available_options:
-            os.system("cls")
+            os.system("clear")
             print("Select properly.")
             time.sleep(2)
-            os.system("cls")
+            os.system("clear")
             continue
         else:
             break
@@ -315,7 +315,7 @@ def menu():
 
 def govern_instance(shapes_list, shapes_list_table):
     ''' Seperate new instance.'''
-    os.system("cls")
+    os.system("clear")
 
     while True:
         menu()
@@ -323,9 +323,9 @@ def govern_instance(shapes_list, shapes_list_table):
 
         available_choices = ("1", "2", "3", "4", "5", "6", "7", "8", "0")
         if option not in available_choices:
-            os.system("cls")
+            os.system("clear")
             exit = input("\n\n\nNo such choice, try again.")
-            os.system("cls")
+            os.system("clear")
             continue
         break
 
@@ -341,16 +341,16 @@ def menu_choices(shapes_list, shapes_list_table, option):
         show_table(shapes_list, shapes_list_table)
 
     elif option == "3":
-        os.system("cls")
+        os.system("clear")
         print(shapes_list.get_largest_shape_by_perimeter())
         exit = input("\n\n\nPress anything to exit.")
-        os.system("cls")
+        os.system("clear")
 
     elif option == "4":
-        os.system("cls")
+        os.system("clear")
         print(shapes_list.get_largest_shape_by_area())
         exit = input("\n\n\nPress anything to exit.")
-        os.system("cls")
+        os.system("clear")
 
     elif option == "5":
         show_formulas(shapes_list, shapes_list_table)
@@ -362,17 +362,17 @@ def menu_choices(shapes_list, shapes_list_table, option):
         save_to_file(shapes_list, shapes_list_table)
 
     elif option == "8":
-        os.system("cls")
+        os.system("clear")
         start()
-        os.system("cls")
+        os.system("clear")
 
     else:
-        os.system("cls")
+        os.system("clear")
         quit()
 
 
 def main():
-    os.system("cls")
+    os.system("clear")
     # Object containing all shapes added by the user.
     shapes_list = ShapeList()
     shapes_list_table = []
