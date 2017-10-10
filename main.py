@@ -387,7 +387,7 @@ def menu_choices(shapes_list, shapes_list_table, option):
         os.system("clear")
         quit()
 
-govern_instance(shapes_list, shapes_list_table)
+    govern_instance(shapes_list, shapes_list_table)
 
 
 def main():
