@@ -23,7 +23,7 @@ def check_if_positive(*args):
 def show_table(shapes_list, shapes_list_table):
     os.system("clear")
     adjusted_column_names = "||ID\t\tSHAPE\t\t\t\t__str__\t\t\t\tPERIMETER\tFORMULA\t    AREA\tFORMULA\t\t ||\n"
-    table_length = 143
+    table_length = 139
     print("@" * table_length)
     print(adjusted_column_names)
 
