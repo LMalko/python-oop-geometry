@@ -72,7 +72,7 @@ def add_shape_to_table(shapes_list_table, shape):
     perimeter = '{:^4.4}'.format('{:.2f}'.format(shape.perimeter))
 
     shape_details = ['{:^19}'.format(shape.__class__.__name__),
-                     '{:^53}'.format(shape.__str__()),
+                     '{:^53}'.format('{:.53}'.format(shape.__str__())),
                      perimeter,
                      '{:^16}'.format(shape.get_perimeter_formula()[shape.__class__.__name__]),
                      area,
